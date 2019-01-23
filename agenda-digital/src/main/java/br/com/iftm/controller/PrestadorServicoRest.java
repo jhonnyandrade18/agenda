@@ -2,8 +2,6 @@ package br.com.iftm.controller;
 
 import java.util.List;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,23 +14,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.iftm.business.BusinessException;
-import br.com.iftm.business.TipoServicoBusiness;
-import br.com.iftm.enfity.TipoServico;
+import br.com.iftm.business.PrestadorServicoBusiness;
+import br.com.iftm.enfity.PrestadorServico;
 
 @RestController // Habilita classe como um servico rest
-@RequestMapping(value = "/tiposervico") // Nome do Servico
+@RequestMapping(value = "/prestadorServico") // Nome do Servico
 
-public class TipoServicoRest {
+public class PrestadorServicoRest {
 
 	@Autowired
-	private TipoServicoBusiness business;
+	private PrestadorServicoBusiness business;
 
 	// create
 	@PostMapping()
-	public ResponseEntity<?> create(@RequestBody TipoServico tipoServico) {
+	public ResponseEntity<?> create(@RequestBody PrestadorServico prestadorServico) {
 		try {
-			tipoServico = business.create(tipoServico);
-			return ResponseEntity.ok(tipoServico);
+			prestadorServico = business.create(prestadorServico);
+			return ResponseEntity.ok(prestadorServico);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			return ResponseEntity.badRequest().body(e);
@@ -45,28 +43,7 @@ public class TipoServicoRest {
 	public ResponseEntity<?> read() {
 
 		try {
-			List<TipoServico> lista = business.read();
-			if (lista.isEmpty()) {
-				return ResponseEntity.notFound().build();
-			} else {
-				return ResponseEntity.ok(lista);
-			}
-
-		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return ResponseEntity.badRequest().body(e);
-		}
-
-	}
-
-	// readByName
-
-	@GetMapping("/filtro/nome")
-	public ResponseEntity<?> readByName(@PathParam("nome") String nome) {
-
-		try {
-			List<TipoServico> lista = business.readByName(nome);
+			List<PrestadorServico> lista = business.read();
 			if (lista.isEmpty()) {
 				return ResponseEntity.notFound().build();
 			} else {
@@ -84,11 +61,11 @@ public class TipoServicoRest {
 //update
 
 	@PutMapping
-	public ResponseEntity<?> update(@RequestBody TipoServico tipoServico) throws BusinessException {
+	public ResponseEntity<?> update(@RequestBody PrestadorServico prestadorServico) throws BusinessException {
 
 		try {
-			tipoServico = business.update(tipoServico);
-			return ResponseEntity.ok(tipoServico);
+			prestadorServico = business.update(prestadorServico);
+			return ResponseEntity.ok(prestadorServico);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			return ResponseEntity.badRequest().body(e);

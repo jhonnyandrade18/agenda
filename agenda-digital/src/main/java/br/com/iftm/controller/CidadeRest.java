@@ -16,23 +16,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.iftm.business.BusinessException;
-import br.com.iftm.business.TipoServicoBusiness;
-import br.com.iftm.enfity.TipoServico;
+import br.com.iftm.business.CidadeBusiness;
+import br.com.iftm.enfity.Cidade;
+import br.com.iftm.enfity.enums.Estado;
 
-@RestController // Habilita classe como um servico rest
-@RequestMapping(value = "/tiposervico") // Nome do Servico
+@RestController // Habilita classe como uma cidade rest
+@RequestMapping(value = "/cidade") // Nome da cidade
 
-public class TipoServicoRest {
+public class CidadeRest {
 
 	@Autowired
-	private TipoServicoBusiness business;
+	private CidadeBusiness business;
 
 	// create
 	@PostMapping()
-	public ResponseEntity<?> create(@RequestBody TipoServico tipoServico) {
+	public ResponseEntity<?> create(@RequestBody Cidade cidade) {
 		try {
-			tipoServico = business.create(tipoServico);
-			return ResponseEntity.ok(tipoServico);
+			cidade = business.create(cidade);
+			return ResponseEntity.ok(cidade);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			return ResponseEntity.badRequest().body(e);
@@ -45,7 +46,7 @@ public class TipoServicoRest {
 	public ResponseEntity<?> read() {
 
 		try {
-			List<TipoServico> lista = business.read();
+			List<Cidade> lista = business.read();
 			if (lista.isEmpty()) {
 				return ResponseEntity.notFound().build();
 			} else {
@@ -62,11 +63,11 @@ public class TipoServicoRest {
 
 	// readByName
 
-	@GetMapping("/filtro/nome")
-	public ResponseEntity<?> readByName(@PathParam("nome") String nome) {
+	@GetMapping("/filtro/estado")
+	public ResponseEntity<?> readByEstado(@PathParam("estado") Estado estado) {
 
 		try {
-			List<TipoServico> lista = business.readByName(nome);
+			List<Cidade> lista = business.readByEstado(estado);
 			if (lista.isEmpty()) {
 				return ResponseEntity.notFound().build();
 			} else {
@@ -84,11 +85,11 @@ public class TipoServicoRest {
 //update
 
 	@PutMapping
-	public ResponseEntity<?> update(@RequestBody TipoServico tipoServico) throws BusinessException {
+	public ResponseEntity<?> update(@RequestBody Cidade cidade) throws BusinessException {
 
 		try {
-			tipoServico = business.update(tipoServico);
-			return ResponseEntity.ok(tipoServico);
+			cidade = business.update(cidade);
+			return ResponseEntity.ok(cidade);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			return ResponseEntity.badRequest().body(e);
