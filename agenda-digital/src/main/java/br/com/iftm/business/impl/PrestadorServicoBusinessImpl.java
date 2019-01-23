@@ -68,6 +68,9 @@ public class PrestadorServicoBusinessImpl implements PrestadorServicoBusiness {
 
 		for (TipoServico tipoServico : prestadorServico.getTipoServico()) {
 
+			if (tipoServico.getCodigo() == null) {
+				throw new BusinessException("Tipo Servico Requerido!");
+			}
 		}
 
 		return dao.create(prestadorServico);
