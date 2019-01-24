@@ -1,8 +1,8 @@
-package br.com.iftm.enfity;
+package br.com.iftm.entily;
 
 import java.util.List;
 
-import br.com.iftm.enfity.enums.TipoLogradouro;
+import br.com.iftm.entily.enums.TipoLogradouro;
 
 public class PrestadorServico {
 
@@ -16,23 +16,24 @@ public class PrestadorServico {
 	private String complemento;
 	private String numero;
 	private String email;
-	private List<Telefone> telefone;
-	private List<TipoServico> tipoServico;
 
-	public List<Telefone> getTelefone() {
-		return telefone;
+	private List<Telefone> telefones;
+	private List<TipoServico> tipoServicos;
+
+	public List<Telefone> getTelefones() {
+		return telefones;
 	}
 
-	public void setTelefone(List<Telefone> telefone) {
-		this.telefone = telefone;
+	public void setTelefones(List<Telefone> telefones) {
+		this.telefones = telefones;
 	}
 
-	public List<TipoServico> getTipoServico() {
-		return tipoServico;
+	public List<TipoServico> getTipoServicos() {
+		return tipoServicos;
 	}
 
-	public void setTipoServico(List<TipoServico> tipoServico) {
-		this.tipoServico = tipoServico;
+	public void setTipoServicos(List<TipoServico> tipoServicos) {
+		this.tipoServicos = tipoServicos;
 	}
 
 	public Integer getCodigo() {

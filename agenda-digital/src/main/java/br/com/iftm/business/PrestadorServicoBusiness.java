@@ -2,25 +2,27 @@ package br.com.iftm.business;
 
 import java.util.List;
 
-import br.com.iftm.enfity.PrestadorServico;
+import br.com.iftm.entily.Cidade;
+import br.com.iftm.entily.PrestadorServico;
 
 public interface PrestadorServicoBusiness {
 
 	/**
-	 * Metodo responsavel por garantir os parametros obrigatorios, bem como
-	 * solicitar a camada de acesso a dados que persista o objeto
-	 * ({@link PrestadorServico}.
+	 * Método responsavel por garantr os parametros obrigatórios, bem como solicitar
+	 * a camada de acesso a dados que persista o objeto
 	 * 
-	 * @param PrestadorServico Objeto a ser persistido.
-	 * @return Objeto persistido.
-	 * @throws BusinessException
+	 * @param prestadorServ
+	 * @return
 	 */
-
-	PrestadorServico create(PrestadorServico tipoServico) throws BusinessException;
+	PrestadorServico create(PrestadorServico prestadorServ) throws BusinessException;
 
 	List<PrestadorServico> read() throws BusinessException;
 
-	PrestadorServico update(PrestadorServico tipoServico) throws BusinessException;
+	List<PrestadorServico> readByName(String nome) throws BusinessException;
+
+	List<PrestadorServico> readByCidade(Cidade cidade) throws BusinessException;
+
+	PrestadorServico update(PrestadorServico prestadorServ) throws BusinessException;
 
 	void delete(Integer id) throws BusinessException;
 

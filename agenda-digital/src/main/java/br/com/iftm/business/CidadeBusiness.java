@@ -2,20 +2,19 @@ package br.com.iftm.business;
 
 import java.util.List;
 
-import br.com.iftm.enfity.Cidade;
-import br.com.iftm.enfity.enums.Estado;
+import br.com.iftm.entily.Cidade;
+import br.com.iftm.entily.enums.Estado;
 
 public interface CidadeBusiness {
 
 	/**
-	 * Metodo responsavel por garantir os parametros obrigatorios, bem como
-	 * solicitar a camada de acesso a dados que persista o objeto ({@link Cidade}.
+	 * Método responsavel por garantr os parametros obrigatórios, bem como solicitar
+	 * a camada de acesso a dados que persista o objeto
 	 * 
-	 * @param Cidade Objeto a ser persistido.
-	 * @return Objeto persistido.
+	 * @param cidade
+	 * @return
 	 * @throws BusinessException
 	 */
-
 	Cidade create(Cidade cidade) throws BusinessException;
 
 	List<Cidade> read() throws BusinessException;
@@ -25,4 +24,5 @@ public interface CidadeBusiness {
 	Cidade update(Cidade cidade) throws BusinessException;
 
 	void delete(Integer id) throws BusinessException;
+
 }
