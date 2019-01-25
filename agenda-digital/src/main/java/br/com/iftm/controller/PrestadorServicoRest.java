@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.iftm.business.BusinessException;
 import br.com.iftm.business.PrestadorServicoBusiness;
+import br.com.iftm.controller.dto.FiltroPrestadoDTO;
 import br.com.iftm.entily.Cidade;
 import br.com.iftm.entily.PrestadorServico;
 
@@ -46,14 +47,35 @@ public class PrestadorServicoRest {
 
 	}
 
-	//////////////////////////////////////////////////////////////////////////////////////////////
-
 	// READ
-	@GetMapping
+	@GetMapping()
 	public ResponseEntity<?> read() {
 
 		try {
 			List<PrestadorServico> retornaLista = psBusiness.read();
+
+			if (retornaLista.isEmpty()) {
+				return ResponseEntity.notFound().build();
+			} else {
+				// devolve a lista
+				return ResponseEntity.ok(retornaLista);
+			}
+
+		} catch (BusinessException e) {
+
+			e.printStackTrace();
+			return ResponseEntity.badRequest().body(e); // retorna um codigo de badRequest
+		}
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////////////////
+
+	// READBYFILTROS
+	@PostMapping("/filtros")
+	public ResponseEntity<?> readByFiltros(@RequestBody FiltroPrestadoDTO filtroPrestadoDTO) {
+
+		try {
+			List<PrestadorServico> retornaLista = psBusiness.readByFiltros(filtroPrestadoDTO);
 
 			if (retornaLista.isEmpty()) {
 				return ResponseEntity.notFound().build();

@@ -2,6 +2,7 @@ package br.com.iftm.business;
 
 import java.util.List;
 
+import br.com.iftm.controller.dto.FiltroPrestadoDTO;
 import br.com.iftm.entily.Cidade;
 import br.com.iftm.entily.PrestadorServico;
 
@@ -23,6 +24,8 @@ public interface PrestadorServicoBusiness {
 	List<PrestadorServico> readByCidade(Cidade cidade) throws BusinessException;
 
 	PrestadorServico update(PrestadorServico prestadorServ) throws BusinessException;
+
+	List<PrestadorServico> readByFiltros(FiltroPrestadoDTO filtroPrestadoPrestadoDTO) throws BusinessException;;
 
 	void delete(Integer id) throws BusinessException;
 

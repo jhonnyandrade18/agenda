@@ -10,6 +10,7 @@ import org.springframework.util.StringUtils;
 
 import br.com.iftm.business.BusinessException;
 import br.com.iftm.business.PrestadorServicoBusiness;
+import br.com.iftm.controller.dto.FiltroPrestadoDTO;
 import br.com.iftm.dao.PrestadorServicoDAO;
 import br.com.iftm.entily.Cidade;
 import br.com.iftm.entily.PrestadorServico;
@@ -200,6 +201,13 @@ public class PrestadorServicoBusinessImpl implements PrestadorServicoBusiness {
 			throw new BusinessException("Nome Requerido!"); // excessão disparada pela camada Business
 		}
 		prestadorDao.delete(id); // trata a parte de persistência (via interface)
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<PrestadorServico> readByFiltros(FiltroPrestadoDTO filtroPrestadoPrestadoDTO) {
+		// TODO Auto-generated method stub
+		return prestadorDao.readByFiltros(filtroPrestadoPrestadoDTO);
 	}
 
 }
