@@ -73,6 +73,7 @@ public class TipoServicoBusinessImpl implements TipoServicoBusiness {
 	////////////////////////////////////////////////////////////////////////////////////
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(Integer id) throws BusinessException {
 
 		if (id == null) {

@@ -10,15 +10,15 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity // persistencia
-@Table(name = "TipoServico", schema = "EVERIS", uniqueConstraints = {
-		@UniqueConstraint(name = "UNQ_TipoServico", columnNames = { "NOME_TIPOSERVICO" }) })
-@SequenceGenerator(name = "SQ_TipoServico", sequenceName = "SQ_TipoServico", initialValue = 1, allocationSize = 1)
+@Table(name = "TIPOSERVICO", schema = "EVERIS", uniqueConstraints = {
+		@UniqueConstraint(name = "UNQ_TIPOSERVICO", columnNames = { "NOME_TIPOSERVICO" }) })
+@SequenceGenerator(name = "SQ_TIPOSERVICO", sequenceName = "SQ_TIPOSERVICO", initialValue = 1, allocationSize = 1, schema = "EVERIS")
 
 public class TipoServico {
 
 	@Id
 
-	@GeneratedValue(generator = "SQ_TipoServico", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator = "SQ_TIPOSERVICO", strategy = GenerationType.SEQUENCE)
 
 	@Column(name = "CODIGO_TIPOSERVICO")
 

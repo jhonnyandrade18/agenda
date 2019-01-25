@@ -35,6 +35,7 @@ public class PrestadorServicoRest {
 			prestadorServ = psBusiness.create(prestadorServ);
 
 			return ResponseEntity.ok(prestadorServ);
+
 		} catch (BusinessException e) {
 
 			e.printStackTrace();

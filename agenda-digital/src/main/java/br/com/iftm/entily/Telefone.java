@@ -1,10 +1,52 @@
 package br.com.iftm.entily;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@Entity // persistencia
+@Table(name = "TELEFONE", schema = "EVERIS", uniqueConstraints = {
+		@UniqueConstraint(name = "UNQ_TELEFONE", columnNames = { "CODIGO_PRESTADORSERVICO", "DDD_TELEFONE",
+				"NUMERO_TELEFONE" }) })
+@SequenceGenerator(name = "SQ_TELEFONE", sequenceName = "SQ_TELEFONE", initialValue = 1, allocationSize = 1, schema = "EVERIS")
+@JsonIgnoreProperties(value = { "prestadorServico" })
 public class Telefone {
 
+	@Id
+
+	@GeneratedValue(generator = "SQ_TELEFONE", strategy = GenerationType.SEQUENCE)
+
+	@Column(name = "CODIGO_TELEFONE")
 	private Integer codigo;
+	@Column(name = "DDD_TELEFONE", nullable = false)
 	private Integer ddd;
+	@Column(name = "NUMERO_TELEFONE", nullable = false)
 	private Integer numero;
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = PrestadorServico.class)
+	@JoinColumn(name = "CODIGO_PRESTADORSERVICO", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "FK_PRESTADORSERVICO"))
+	private PrestadorServico prestadorServico;
+
+	public PrestadorServico getPrestadorServico() {
+		return prestadorServico;
+	}
+
+	public void setPrestadorServico(PrestadorServico prestadorServico) {
+		this.prestadorServico = prestadorServico;
+	}
 
 	public Integer getCodigo() {
 		return codigo;
